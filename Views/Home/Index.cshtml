@@ -1,0 +1,40 @@
+﻿@{
+ViewData["Title"] = "CRUDelicious";
+}
+@model Dish
+<div class="text-center">
+    <h4 class="display-5">Welcome to @ViewData["Title"]</h4>
+</div>
+<div class="container">
+    <div class="row m-auto my-4 p-2 justify-content-center">
+        <div class="col-4">
+            <h5 class="fs-5">Check out some recent dishes!</h5>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+            <a asp-controller="Home" asp-action="Create" class="btn btn-outline-primary btn-sm px-2">Add a Dish</a>
+        </div>
+        <div class="col-8 my-3">
+            <table class="table-striped table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Dishes Names</th>
+                        <th scope="col">Author</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                    @foreach (var dish in @ViewBag.AllDishes)
+                    {
+                    <tr>
+                        <th scope="row">@dish.Id</th>
+                        <td><a href="/dish/@dish.Id" class="text-link">@dish.Name</a></td>
+                        <td>by @dish.Chef</td>
+                    </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
